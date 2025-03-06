@@ -36,12 +36,13 @@ class TasksController < ApplicationController
 
   # PATCH/PUT /lists/tasks/1 or /lists/tasks/1.json
   def update
-    respond_to do |format|
-      if @task.update(task_params)
-        format.html { redirect_to list_task_path(@list, @task), notice: "Task was successfully updated." }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
+    if @task.update(task_params)
+      respond_to do |format|
+        format.html { redirect_to @task.list }
+        format.turbo_stream
       end
+    else
+      render :edit
     end
   end
 

@@ -1,6 +1,6 @@
-<li id="<%= dom_id task %>" class="py-2">
-  <%= form_with(model: [task.list, task], class: "flex") do |form| %>
-    <%= form.check_box :completed, class: "mr-2" %>
+<li id="<%= dom_id task %>" data-controller="tasks" class="py-2 <%= 'line-through text-gray-200' if task.completed %>">
+  <%= form_with(model: [task.list, task], class: "flex", data: { turbo_frame: dom_id(task) }) do |form| %>
+    <%= form.check_box :completed, class: "mr-2", data: { action: "change->tasks#toggle" } %>
     <%= task.description %>
   <% end %>
 </li>
