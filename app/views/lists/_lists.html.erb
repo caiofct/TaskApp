@@ -1,0 +1,23 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <%= turbo_frame_tag :lists do %>
+    <div class="border-b border-gray-200 min-w-full">
+      <nav class="flex items-center lists" data-controller="tabs">
+        <%= render lists, active_list: list %>
+      </nav>
+    </div>
+  <% end %>
+
+  <%= turbo_frame_tag :tasks, refresh: :morph, data: { "turbo-action": "advance" } do %>
+    <ul class="min-w-full mt-5">
+      <% if tasks.any? %>
+        <%= render tasks, active_list: list %>
+      <% else %>
+        <p class="text-center my-10">No tasks found.</p>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

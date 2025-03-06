@@ -3,11 +3,13 @@ class ListsController < ApplicationController
 
   # GET /lists
   def index
-    @lists = List.all
+    @lists = List.order(created_at: :asc)
+    @list = @lists.first
   end
 
   # GET /lists/1
   def show
+    @lists = List.order(created_at: :asc)
   end
 
   # GET /lists/new
