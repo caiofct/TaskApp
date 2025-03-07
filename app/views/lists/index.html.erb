@@ -1,0 +1,3 @@
+<% content_for :title, "List #{@list.name}" %>
+
+<%= render "lists", lists: @lists, list: @list, tasks: @list.tasks %>
