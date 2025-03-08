@@ -2,7 +2,7 @@
   <%= form_with(model: [task.list, task], class: "flex items-center") do |form| %>
     <%= form.check_box :completed, class: "mr-2", data: { action: "change->tasks#toggle" } %>
     <%= form.text_field :description, class: "task-description-field hidden", data: { action: "keydown.esc->tasks#submit_edit", action: "blur->tasks#blur" } %>
-    <%= link_to task.description, "#", class: "task-description-link", data: { action: "click->tasks#edit" } %>
+    <%= link_to task.description || "&nbsp;&nbsp;&nbsp;&nbsp;".html_safe, "#", class: "task-description-link", data: { action: "click->tasks#edit" } %>
     <%= link_to list_task_path(task.list, task), class: "task-delete hidden", data: { turbo_method: :delete, turbo_frame: "tasks" } do %>
       <%= image_tag "trash.svg", class: "w-5 h-5 ml-3" %>
     <% end %>
