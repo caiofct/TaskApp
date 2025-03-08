@@ -12,6 +12,7 @@
   <% end %>
 
   <%= turbo_frame_tag :tasks, refresh: :morph, data: { "turbo-action": "advance" } do %>
+    <%= link_to "+ Add Task", new_list_task_path(list), class: "hover:color-indigo-500", data: { turbo_stream: "" } %>
     <%= render "tasks/tasks", list: list, tasks: tasks %>
   <% end %>
 </div>
