@@ -1,0 +1,7 @@
+<ul id="tasks-<%=list.id%>" class="min-w-full mt-5">
+  <% if tasks.any? %>
+    <%= render tasks %>
+  <% else %>
+    <p class="text-center my-10">No tasks found.</p>
+  <% end %>
+</ul>

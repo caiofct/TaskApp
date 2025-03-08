@@ -12,12 +12,6 @@
   <% end %>
 
   <%= turbo_frame_tag :tasks, refresh: :morph, data: { "turbo-action": "advance" } do %>
-    <ul class="min-w-full mt-5">
-      <% if tasks.any? %>
-        <%= render tasks %>
-      <% else %>
-        <p class="text-center my-10">No tasks found.</p>
-      <% end %>
-    </ul>
+    <%= render "tasks/tasks", list: list, tasks: tasks %>
   <% end %>
 </div>

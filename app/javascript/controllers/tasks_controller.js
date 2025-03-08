@@ -10,7 +10,7 @@ export default class extends Controller {
     descriptionInput.focus();
   }
 
-  submitEdit(event) {
+  submit_edit(event) {
     event.preventDefault();
     event.target.closest("form").requestSubmit();
   }
@@ -19,6 +19,16 @@ export default class extends Controller {
     event.preventDefault();
     event.target.classList.add("hidden");
     event.target.closest("form").getElementsByClassName("task-description-link")[0].classList.remove("hidden");
+  }
+
+  show_actions(event) {
+    event.preventDefault();
+    event.target.closest("li").getElementsByClassName("task-delete")[0].classList.remove("hidden");
+  }
+
+  hide_actions(event) {
+    event.preventDefault();
+    event.target.closest("li").getElementsByClassName("task-delete")[0].classList.add("hidden");
   }
 
   toggle(event) {
