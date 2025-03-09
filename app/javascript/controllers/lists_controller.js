@@ -6,12 +6,13 @@ export default class extends Controller {
   openModal(event) {
     event.preventDefault()
     this.modalTarget.classList.remove("hidden");
-    document.getElementById("list_name").focus();
+    document.getElementById("modal-list-name").focus();
   }
 
   closeModal(event) {
     event.preventDefault();
     this.modalTarget.classList.add("hidden");
+    document.getElementById("modal-list-name").value = "";
 
     document.querySelectorAll(".list-tab").forEach(tab => {
       tab.classList.remove("text-indigo-600", "border-indigo-500", "border-b-2");

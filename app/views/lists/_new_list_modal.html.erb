@@ -3,7 +3,7 @@
     <%= form_with(model: List.new, data: { turbo_frame: :tasks, turbo_action: "advance", action: "turbo:submit-end->lists#closeModal" }) do |form| %>
       <div class="mb-4">
         <%= form.label :name, "List Name", class: "text-nowrap mr-2" %>
-        <%= form.text_field :name, required: true, class: "px-3 py-2 border w-full" %>
+        <%= form.text_field :name, required: true, id: "modal-list-name", class: "px-3 py-2 border w-full" %>
       </div>
       <div class="flex justify-end items-center">
         <%= button_tag "Cancel", class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded", data: { action: "click->lists#closeModal" } %>
