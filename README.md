@@ -29,8 +29,8 @@ This Rails application allows users to create and manage task lists with the hel
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/task-list-generator.git
-   cd task-list-generator
+   git clone git@github.com:caiofct/TaskApp.git
+   cd TaskApp
    ```
 
 2. Install dependencies:
