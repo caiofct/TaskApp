@@ -7,6 +7,10 @@ Rails.application.routes.draw do
 
   resources :lists do
     resources :tasks
+
+    collection do
+      post :generate_with_ai
+    end
   end
 
   # Defines the root path route ("/")

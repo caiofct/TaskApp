@@ -33,6 +33,31 @@ class ListsController < ApplicationController
     end
   end
 
+  # POST /lists/generate
+  def generate_with_ai
+    list_name = params[:list_name]
+
+    if list_name.present?
+      result = OpenAiService.generate_list_with_tasks(list_name)
+      tasks = result[:tasks]
+      if tasks.present?
+        List.transaction do
+          @list = List.create!(name: list_name)
+          tasks.each do |task_name|
+            @list.tasks.create!(description: task_name)
+          end
+        end
+        respond_to do |format|
+          format.html { redirect_to @list, notice: "List was successfully generated with AI." }
+        end
+      else
+        redirect_to lists_path, alert: "No task was generated. Please try a different list name/prompt"
+      end
+    else
+      redirect_to lists_path, alert: "Please provide a list name."
+    end
+  end
+
   # PATCH/PUT /lists/1
   def update
     respond_to do |format|

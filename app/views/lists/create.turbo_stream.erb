@@ -3,5 +3,8 @@
 <% end %>
 
 <%= turbo_stream.replace :tasks do %>
-  <%= render "tasks/tasks", list: @list, tasks: @list.tasks %>
+  <%= turbo_frame_tag :tasks, refresh: :morph, data: { "turbo-action": "advance" } do %>
+    <%= render "lists/add_task", list: @list %>
+    <%= render "tasks/tasks", list: @list, tasks: @list.tasks %>
+  <% end %>
 <% end %>

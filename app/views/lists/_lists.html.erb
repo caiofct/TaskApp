@@ -3,9 +3,11 @@
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
   <% end %>
 
+  <%= render "ai_generator_form" %>
+
   <div class="flex items-center border-b border-gray-200 min-w-full" data-controller="lists">
     <%= link_to "+ Add List", "#", class: "text-nowrap mr-8 text-indigo-500 hover:text-indigo-800", data: { action: "click->lists#openModal" } %>
-    <nav class="flex items-center lists-nav overflow-x-scroll text-nowrap h-[55px]" data-controller="tabs">
+    <nav class="flex items-center lists-nav overflow-x-scroll text-nowrap h-[70px]" data-controller="tabs">
       <%= turbo_frame_tag :lists, refresh: :morph, data: { "turbo-action": "advance" } do %>
         <%= render lists, active_list: list, new_list: false %>
       <% end %>
@@ -14,6 +16,7 @@
   </div>
 
   <%= turbo_frame_tag :tasks, refresh: :morph, data: { "turbo-action": "advance" } do %>
+    <%= render "lists/add_task", list: list %>
     <%= render "tasks/tasks", list: list, tasks: tasks %>
   <% end %>
 </div>

@@ -64,3 +64,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+# Add this line to your Gemfile
+gem "ruby-openai"
