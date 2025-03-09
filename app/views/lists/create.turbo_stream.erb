@@ -1,0 +1,7 @@
+<%= turbo_stream.prepend :lists do %>
+  <%= render @list, active_list: @list, new_list: true %>
+<% end %>
+
+<%= turbo_stream.replace :tasks do %>
+  <%= render "tasks/tasks", list: @list, tasks: @list.tasks %>
+<% end %>

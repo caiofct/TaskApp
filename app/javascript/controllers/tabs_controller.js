@@ -4,6 +4,13 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["tab"];
 
+  tabTargetConnected(target) {
+    // Whenever a new tab is added we need to advanced the history
+    if (target.className.includes("new-list")) {
+      window.history.pushState({}, '', target.href);
+    }
+  }
+
   toggle(event) {
     this.tabTargets.forEach(tab => {
       if (tab === event.target) {

@@ -3,13 +3,13 @@ class ListsController < ApplicationController
 
   # GET /lists
   def index
-    @lists = List.order(created_at: :asc)
+    @lists = List.order(created_at: :desc)
     @list = @lists.first
   end
 
   # GET /lists/1
   def show
-    @lists = List.order(created_at: :asc)
+    @lists = List.order(created_at: :desc)
   end
 
   # GET /lists/new
@@ -24,13 +24,12 @@ class ListsController < ApplicationController
   # POST /lists
   def create
     @list = List.new(list_params)
-
-    respond_to do |format|
-      if @list.save
-        format.html { redirect_to @list, notice: "List was successfully created." }
-      else
-        format.html { render :new, status: :unprocessable_entity }
+    if @list.save
+      respond_to do |format|
+        format.turbo_stream
       end
+    else
+      render :new
     end
   end
 

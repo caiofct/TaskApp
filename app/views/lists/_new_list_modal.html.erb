@@ -1,0 +1,14 @@
+<div id="new-list-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" data-lists-target="modal">
+  <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+    <%= form_with(model: List.new, data: { turbo_frame: :tasks, turbo_action: "advance", action: "turbo:submit-end->lists#closeModal" }) do |form| %>
+      <div class="mb-4">
+        <%= form.label :name, "List Name", class: "text-nowrap mr-2" %>
+        <%= form.text_field :name, required: true, class: "px-3 py-2 border w-full" %>
+      </div>
+      <div class="flex justify-end items-center">
+        <%= button_tag "Cancel", class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded", data: { action: "click->lists#closeModal" } %>
+        <%= form.submit "Save", class: "ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+      </div>
+    <% end %>
+  </div>
+</div>

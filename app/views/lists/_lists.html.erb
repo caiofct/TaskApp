@@ -3,18 +3,17 @@
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
   <% end %>
 
-  <%= turbo_frame_tag :lists do %>
-    <div class="border-b border-gray-200 min-w-full">
-      <nav class="flex items-center lists" data-controller="tabs">
-        <%= render lists, active_list: list %>
-      </nav>
-    </div>
-  <% end %>
+  <div class="flex items-center border-b border-gray-200 min-w-full" data-controller="lists">
+    <%= link_to "+ Add List", "#", class: "text-nowrap mr-8 text-indigo-500 hover:text-indigo-800", data: { action: "click->lists#openModal" } %>
+    <nav class="flex items-center lists-nav overflow-x-scroll text-nowrap h-[55px]" data-controller="tabs">
+      <%= turbo_frame_tag :lists, refresh: :morph, data: { "turbo-action": "advance" } do %>
+        <%= render lists, active_list: list, new_list: false %>
+      <% end %>
+    </nav>
+    <%= render "lists/new_list_modal" %>
+  </div>
 
   <%= turbo_frame_tag :tasks, refresh: :morph, data: { "turbo-action": "advance" } do %>
-    <div class="mt-3">
-      <%= link_to "+ Add Task", new_list_task_path(list), class: "text-indigo-500 hover:text-indigo-800", data: { turbo_stream: "" } %>
-    </div>
     <%= render "tasks/tasks", list: list, tasks: tasks %>
   <% end %>
 </div>
