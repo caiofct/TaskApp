@@ -84,5 +84,5 @@ test:
 #
 production:
   <<: *default
-  database: incident_slack_bot_production
+  database: task_app_production
   url: <%= ENV['DATABASE_URL'] %>
